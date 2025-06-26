@@ -1,11 +1,10 @@
-import React, {useEffect, useRef, useState } from "react";
-import { assets } from "../../assets/assets";
+import React, { useEffect, useRef, useState } from "react";
+import { assets, blogCategories } from "../../assets/assets";
 import Quill from "quill";
 
 const AddBlog = () => {
-
-  const editorRef = useRef(null)
-  const quillRef = useRef(null)
+  const editorRef = useRef(null);
+  const quillRef = useRef(null);
 
   const [image, setImage] = useState(false);
   const [title, setTitle] = useState("");
@@ -16,14 +15,14 @@ const AddBlog = () => {
   const generateContent = async (e) => {};
 
   const onSubmitHandler = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
   };
 
   useEffect(() => {
-    if(!quillRef.current && editorRef.current){
-      quillRef.current = new Quill(editorRef.current, {theme: 'snow'})
+    if (!quillRef.current && editorRef.current) {
+      quillRef.current = new Quill(editorRef.current, { theme: "snow" });
     }
-  }, [])
+  }, []);
   return (
     <form
       onSubmit={onSubmitHandler}
@@ -76,8 +75,30 @@ const AddBlog = () => {
           </button>
         </div>
 
-         <p className="mt-4">Blog Category</p>
-          <select name="category" className="">Select Category</select>
+        <p className="mt-4">Blog Category</p>
+        <select
+          name="category"
+          onChange={(e) => setCategory(e.target.value)}
+          className="mt-2 px-3 py-2 border text-gray-500 border-gray-300 outline-none rounded"
+        >
+          <option value="">Select Category</option>
+          {blogCategories.map((item, index) => {
+            return (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            );
+          })}
+        </select>
+        <div className="flex gap-2 mt-4">
+          <p>Publish Now</p>
+          <input
+            type="checkbox"
+            checked={isPublished}
+            className="scale-125 cursor-pointer"
+            onChange={(e) => setIsPublished(e.target.value)}
+          />
+        </div>
       </div>
     </form>
   );
