@@ -15,7 +15,7 @@ const BlogTableItem = ({ blog, fetchBlogs, index }) => {
             blog.isPublished ? "text-green-600" : "text-orange-700"
           }`}
         >
-          {blog.isPublished ? "Unpublished" : "Published"}
+          {blog.isPublished ? "Published" : "Unpublished"}
         </p>
       </td>
       <td className="px-2 py-4 flex text-xs gap-3">

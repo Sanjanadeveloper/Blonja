@@ -100,6 +100,7 @@ export const addComment = async (req, res) => {
   try {
     const { blog, name, content } = req.body;
     await Comment.create({ blog, name, content });
+    res.json({ success: true, message: "Comment added" });
   } catch (error) {
     res.json({ success: false, message: error.message });
   }

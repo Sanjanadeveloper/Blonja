@@ -19,6 +19,7 @@ const AddBlog = () => {
   };
 
   useEffect(() => {
+    //Initiate Quill only once
     if (!quillRef.current && editorRef.current) {
       quillRef.current = new Quill(editorRef.current, { theme: "snow" });
     }
@@ -96,9 +97,10 @@ const AddBlog = () => {
             type="checkbox"
             checked={isPublished}
             className="scale-125 cursor-pointer"
-            onChange={(e) => setIsPublished(e.target.value)}
+            onChange={(e) => setIsPublished(e.target.checked)}
           />
         </div>
+        <button type="submit" className="mt-8 w-40 h-10 bg-primary text-white rounded cursor-pointer text-sm">Add Blog</button>
       </div>
     </form>
   );
